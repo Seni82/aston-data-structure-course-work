@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ac2746df-b277-4046-91da-b3ec2e40c5ba" name="Default Changelist" comment="" />
+    <list default="true" id="ac2746df-b277-4046-91da-b3ec2e40c5ba" name="Default Changelist" comment="Managed to implement the graph structure.">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/GraphAdjacencyList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/Node.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/WmrNetworkGraphBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/control/WmrNetworkController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/control/WmrNetworkController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/TrainNetworkModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/TrainNetworkModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/WmrNetworkUtilityClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/WmrNetworkUtilityClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/WmrTrainLineModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/WmrTrainLineModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/queries/ListTerminiOfALine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/queries/ListTerminiOfALine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/queries/StationsInLineAndTotalTravelTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/queries/StationsInLineAndTotalTravelTime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,7 +25,26 @@
   <component name="FileColors">
     <fileColor scope="Open Files" color="Yellow" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
+  </component>
   <component name="ProjectId" id="1mnoHoEDKCnk5bGkcs831jQafRZ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -18,11 +52,13 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -55,8 +91,68 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Managed to implement the graph structure." />
+    <option name="LAST_COMMIT_MESSAGE" value="Managed to implement the graph structure." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/model/Node.java</url>
+          <line>2</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/model/GraphAdjacencyList.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/model/TrainNetworkModel.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/model/GraphAdjacencyList.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/src/model/TrainNetworkModel.java</url>
+          <line>17</line>
+          <properties field="trainLinesAndStationObjectMap" class="model.TrainNetworkModel" />
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/model/TrainNetworkModel.java</url>
+          <line>92</line>
+          <properties class="model.TrainNetworkModel" method="getNodeDataObjectForTest">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="((LinkedHashMap.Entry)((LinkedHashMap)graphMap).entrySet().toArray()[0]).getValue()" custom="java.util.LinkedHashMap.Entry,java.util.LinkedHashMap" />
+      </configuration>
+    </watches-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/wmrNetwork_2$Main.ic" NAME="Main Coverage Results" MODIFIED="1610242273168" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/wmrNetwork_2$Main.ic" NAME="Main Coverage Results" MODIFIED="1610381383195" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>view.*</FILTER>
     </SUITE>
   </component>

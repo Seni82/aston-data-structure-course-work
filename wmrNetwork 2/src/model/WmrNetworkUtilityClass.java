@@ -3,12 +3,7 @@ import view.Main;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Scanner;
-
-
+import java.util.*;
 
 
 public class WmrNetworkUtilityClass {
@@ -17,42 +12,79 @@ public class WmrNetworkUtilityClass {
 	private Scanner wmrLinesDataReader = null;
 	private Scanner stepFreeAccessStationDataReader = null;
 	
-	
-    
+
 	public WmrNetworkUtilityClass(String dataFolderPath) throws FileNotFoundException{
 		
 		if((wmrLinesDataReader == null) && (stepFreeAccessStationDataReader == null)) {
 		wmrLinesDataReader = new Scanner(new File(dataFolderPath + "/WMRlines.csv")); 
 		stepFreeAccessStationDataReader = new Scanner(new File(dataFolderPath + "/WMRstationsWithStepFreeAccess.csv"));
         new WmrStepFreeAccessStationModel().setListStepFreeAccessData(getAllStepFreeAccessStations());
-		new TrainNetworkModel(getAllWmrTrainNetworkDataFromCsvFileAsAMap());	
+		//new TrainNetworkModel(getAllWmrTrainNetworkDataFromCsvFileAsAMap());
+			new TrainNetworkModel(forMyGraphdata());
 		}
 	}
-	
 
-	
+
+
+
+	protected ArrayList<Node> forMyGraphdata()
+	{
+		ArrayList<Node>netWorkDataMap = new ArrayList<Node>();
+		if(wmrLinesDataReader.hasNext()) {
+			wmrLinesDataReader.nextLine();
+		}
+		while(wmrLinesDataReader.hasNextLine())
+		{
+			String[] trainNetworkData = wmrLinesDataReader.nextLine().split(",");
+			String trainLine = trainNetworkData[0]; String fromToStationName = trainNetworkData[1];
+			String toFromStationName = trainNetworkData[2]; int travelTime = Integer.parseInt(trainNetworkData[3]);
+			Node eachCsvDataLine = new Node(trainLine, fromToStationName,toFromStationName,travelTime);
+			netWorkDataMap.add(eachCsvDataLine);
+
+		}
+		return netWorkDataMap;
+	}
+
+
+
+
+
+
+
+
+
 	/*
-	 * Retrieves a mapped sequence of data read from csv file
-	 * @return the modelled class object WmrTrainLineModel
+	 * Retrieves a mapped sequence of data from csv
+	 * return a map of a stationObject as key and list of Objects as value.
+	 * See how graph building will work.
 	 */
-	protected ArrayList<WmrTrainLineModel> getAllWmrTrainNetworkDataFromCsvFileAsAnObject()
-    {
-		ArrayList<WmrTrainLineModel> entireTrainLineData = new ArrayList<>();
-    	if(wmrLinesDataReader.hasNext()) {
-    		wmrLinesDataReader.nextLine();
-    	}
-    	while(wmrLinesDataReader.hasNextLine()) 
-    	{
-    		String[] trainNetworkData = wmrLinesDataReader.nextLine().split(",");
-    		String trainLine = trainNetworkData[0]; String fromToStationName = trainNetworkData[1]; 
-    		String toFromStationName = trainNetworkData[2]; int travelTime = Integer.parseInt(trainNetworkData[3]);
-    		WmrTrainLineModel eachCsvDataLine = new WmrTrainLineModel(trainLine, fromToStationName, toFromStationName, travelTime);
-    		entireTrainLineData.add(eachCsvDataLine);
-    	}
-    	return entireTrainLineData;
-    }
-	
-	
+	protected Map<WmrTrainLineModel, List<WmrTrainLineModel>> getAllTrainLineNetworkDataAsMapWithObjectsAsKey()
+	{
+		List<WmrTrainLineModel> entireTrainLineData;
+		Map<WmrTrainLineModel, List<WmrTrainLineModel>> netWorkDataMap = new LinkedHashMap<>();
+		if(wmrLinesDataReader.hasNext()) {
+			wmrLinesDataReader.nextLine();
+		}
+		while(wmrLinesDataReader.hasNextLine())
+		{
+			String[] trainNetworkData = wmrLinesDataReader.nextLine().split(",");
+			String trainLine = trainNetworkData[0]; String fromToStationName = trainNetworkData[1];
+			String toFromStationName = trainNetworkData[2]; int travelTime = Integer.parseInt(trainNetworkData[3]);
+			WmrTrainLineModel eachCsvDataLine = new WmrTrainLineModel(trainLine, fromToStationName,toFromStationName,travelTime);
+			if(netWorkDataMap.containsKey(eachCsvDataLine)){
+				netWorkDataMap.get(eachCsvDataLine).add(eachCsvDataLine);
+			}
+			else {
+				entireTrainLineData = new ArrayList<>();
+				entireTrainLineData.add(eachCsvDataLine);
+				netWorkDataMap.put(eachCsvDataLine, entireTrainLineData);
+			}
+		}
+		return netWorkDataMap;
+	}
+
+
+
 	/*
 	 * Retrieves a mapped sequence of data from csv
 	 * return a map of String key and model class object as value.
@@ -69,7 +101,7 @@ public class WmrNetworkUtilityClass {
     		String[] trainNetworkData = wmrLinesDataReader.nextLine().split(",");
     		String trainLine = trainNetworkData[0]; String fromToStationName = trainNetworkData[1]; 
     		String toFromStationName = trainNetworkData[2]; int travelTime = Integer.parseInt(trainNetworkData[3]);
-    		WmrTrainLineModel eachCsvDataLine = new WmrTrainLineModel(fromToStationName, toFromStationName, travelTime);
+			WmrTrainLineModel eachCsvDataLine = new WmrTrainLineModel(trainLine, fromToStationName,toFromStationName,travelTime);
     		if(netWorkDataMap.containsKey(trainLine)) {
     			netWorkDataMap.get(trainLine).add(eachCsvDataLine);
     		}
@@ -81,7 +113,7 @@ public class WmrNetworkUtilityClass {
     	}
     	return netWorkDataMap;
     }
-	
+
 	
 	/*
      * Process step free access data and pass to model when called in constructor.
@@ -170,14 +202,11 @@ public class WmrNetworkUtilityClass {
 		return lineId;
     } 
 
-      //controller.listStationsInLine(stdIn.nextLine().trim())
 	    
 	private static void display(String info) {
 		System.out.println(info);
 	}
-	
-	
-	
+
     
 	/*
      * Returns an error message for an unrecognised command.

@@ -1,4 +1,5 @@
 package control;
+import model.GraphAdjacencyList;
 import model.WmrNetworkUtilityClass;
 import queries.ListTerminiOfALine;
 import queries.StationsInLineAndTotalTravelTime;
@@ -16,6 +17,7 @@ public class WmrNetworkController implements Controller{
 	 */
 	private final StationsInLineAndTotalTravelTime trainLine;
 	private final ListTerminiOfALine terminiOnTrainLine;
+	private final GraphAdjacencyList access;
 	/*
 	 * Instance of model object to be initialised in the controller constructor.
 	 * This will be used to access the model methods when implementing the inner methods of the inherited methods from the interface.
@@ -31,6 +33,7 @@ public class WmrNetworkController implements Controller{
 	public WmrNetworkController(WmrNetworkUtilityClass wmrUtility) {
 		trainLine = new StationsInLineAndTotalTravelTime();
 		terminiOnTrainLine = new ListTerminiOfALine();
+		access = new GraphAdjacencyList();
 	}
 	
 	
@@ -38,7 +41,9 @@ public class WmrNetworkController implements Controller{
 	@Override
 	public String listTermini(String line) {
 		// TODO Auto-generated method stub
-		return terminiOnTrainLine.listAllTerminiOfASpecifiedLine(line);
+		//return terminiOnTrainLine.listAllTerminiOfASpecifiedLine(line);
+		access.buildListOfTerminiGraph(line);
+		return null;
 	}
 
 
@@ -46,12 +51,14 @@ public class WmrNetworkController implements Controller{
 	@Override
 	public String listStationsInLine(String line) {
 		return trainLine.listAllStationsOnLineAndTotalTravelTime(line);
+		//return access.buildListOfTerminiGraph();
 	}
 
 
 	@Override
 	public String listAllLines() {
-		// TODO Auto-generated method stub
+
+		//return allLinesAndTravelTimeAlongStation.listAllStationsOnLineAndTotalTravelTime();
 		return null;
 	}
 

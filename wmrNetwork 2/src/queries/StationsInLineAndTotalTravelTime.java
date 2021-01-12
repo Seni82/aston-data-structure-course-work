@@ -2,6 +2,7 @@ package queries;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import model.TrainNetworkModel;
+import model.WmrNetworkGraphBuilder;
 import model.WmrNetworkUtilityClass;
 import model.WmrTrainLineModel;
 
@@ -11,7 +12,9 @@ import model.WmrTrainLineModel;
    public class StationsInLineAndTotalTravelTime {
 
 
-   	  private Map<String, ArrayList<WmrTrainLineModel>> trainNetworkDataMap;
+
+
+	   private Map<String, ArrayList<WmrTrainLineModel>> trainNetworkDataMap;
 
 
 	   /**
@@ -23,39 +26,39 @@ import model.WmrTrainLineModel;
 		* THIS IMPLEMENTATION WAS DONE WHEN INITIALLY BEFORE I DISCOVERED I MIGHT HAVE READ THE REQUIREMENT WRONGLY!!!!!
 		* KEPT UNTIL SYLVIA CONFIRMS
 		*/
-   public String listStationsInLine(String lineId) 
-   {
-	   long startTime = (new Date()).getTime();
-	   //mapping user alphabet input to an actual train line name and return it.
-	   String trainLine = WmrNetworkUtilityClass.returnMappedTrainLineToSuppliedAlphabet(lineId);
-	   
-	   //retrieve map object that contains list of model objects
-	   trainNetworkDataMap = TrainNetworkModel.getTrainLineDataAsAMap();
-	   StringBuilder result = new StringBuilder();
-	   AtomicInteger cumulateTravelTime = new AtomicInteger(0);
-	   result.append(String.format("See below list of stations on '%s' line and travel time as requested :\n ",trainLine));
+	   public String listStationsInLine(String lineId)
+	   {
+		   long startTime = (new Date()).getTime();
+		   //mapping user alphabet input to an actual train line name and return it.
+		   String trainLine = WmrNetworkUtilityClass.returnMappedTrainLineToSuppliedAlphabet(lineId);
 
-	   //collect all list of train line object value with train line name as specified by user input.
-	   ArrayList<WmrTrainLineModel> trainLineObjects = trainNetworkDataMap.get(trainLine);
+		   //retrieve map object that contains list of model objects
+		   trainNetworkDataMap = TrainNetworkModel.getTrainLineDataAsAMapOfObjectList();
+		   StringBuilder result = new StringBuilder();
+		   AtomicInteger cumulateTravelTime = new AtomicInteger(0);
+		   result.append(String.format("See below list of stations on '%s' line and travel time as requested :\n ",trainLine));
 
-	   trainLineObjects.forEach(trainObject -> {
+		   //collect all list of train line object value with train line name as specified by user input.
+		   ArrayList<WmrTrainLineModel> trainLineObjects = trainNetworkDataMap.get(trainLine);
+
+		   trainLineObjects.forEach(trainObject -> {
 			   String fromToStation = trainObject.getfromToStationName();
 			   String toFromStation = trainObject.getToFromStationName();
 			   int travelTime = trainObject.getTravelTime();
-		       cumulateTravelTime.addAndGet(travelTime);
+			   cumulateTravelTime.addAndGet(travelTime);
 			   result.append("\n").append(fromToStation).append(" => ").append(toFromStation).append(" - ").append(String.format("(%s mins).",cumulateTravelTime)).append(" \n");
-	   });
-	   long endTime = (new Date()).getTime();
-	   long elapsedTime = endTime - startTime;
-	    result.append(String.format("\nThe Total travel time between stations on '%s' line is : (%s mins). \n", trainLine, cumulateTravelTime));
-	   result.append(String.format("\n************List of station query between '%s' line was executed in '%s milliseconds'.************ \n",trainLine, elapsedTime));
-	   return result.toString();
-   }
+		   });
+		   long endTime = (new Date()).getTime();
+		   long elapsedTime = endTime - startTime;
+		   result.append(String.format("\nThe Total travel time between stations on '%s' line is : (%s mins). \n", trainLine, cumulateTravelTime));
+		   result.append(String.format("\n************List of station query between '%s' line was executed in '%s milliseconds'.************ \n",trainLine, elapsedTime));
+		   return result.toString();
+	   }
 
 
-       /*
-        *!!!!IMPLEMENTED BASED ON AVAILABLE ROUTE AND CUMULATE THE TRAVEL TIME ALONG THAT ROUTE!!!!!!!!!!
-        */
+	   /*
+		*!!!!IMPLEMENTED BASED ON AVAILABLE ROUTE AND CUMULATE THE TRAVEL TIME ALONG THAT ROUTE!!!!!!!!!!
+		*/
 	   public String listAllStationsOnLineAndTotalTravelTime(String trainLineId) {
 
 		   long startTime = (new Date()).getTime();
@@ -66,7 +69,7 @@ import model.WmrTrainLineModel;
 		   int x = 0;
 
 		   String trainLine = WmrNetworkUtilityClass.returnMappedTrainLineToSuppliedAlphabet(trainLineId);
-		   trainNetworkDataMap = TrainNetworkModel.getTrainLineDataAsAMap();
+		   trainNetworkDataMap = TrainNetworkModel.getTrainLineDataAsAMapOfObjectList();
 		   ArrayList<WmrTrainLineModel> trainLineObjects = trainNetworkDataMap.get(trainLine);
 
 		   /*
@@ -87,7 +90,6 @@ import model.WmrTrainLineModel;
 				   /*
 					* Add into termini list
 					*/
-				   //listOfTermini.add(trainLineObjects.get(i).getfromToStationName());
 			   }
 
 			   /*
@@ -128,12 +130,14 @@ import model.WmrTrainLineModel;
 		   long elapsedTime = endTime - startTime;
 		   display((String.format("\n*********Cumulative time query on '%s' line executes in '(%s milliseconds)'********.\n", trainLine, elapsedTime)));
 		   return String.format("Stations and cumulative travel time along stations on '%s' line : \n\n" +
-				   "******************** '%s' ***************** \n\n \t %s\n%s",
+						   "******************** '%s' ***************** \n\n \t %s\n%s",
 				   trainLine, trainLine.toUpperCase(), listOfPossibleRoutesOnLine.toString(),"************************************************************************");
 	   }
 
-      private static void display(String info) {
-			System.out.println(info);
-		}
 
- }
+
+	   private static void display(String info) {
+		   System.out.println(info);
+	   }
+   }
+
