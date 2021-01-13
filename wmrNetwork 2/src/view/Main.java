@@ -1,13 +1,9 @@
 package view;
+import control.TrainNetworkController;
+import trainNetworkHelper.TrainNetworkUtilityClass;
 import java.io.FileNotFoundException;
-import control.WmrNetworkController;
-import model.GraphAdjacencyList;
-import model.WmrNetworkUtilityClass;
 
 
-/*
- * 
- */
 
 /**
  * @author ganiyu isola
@@ -20,7 +16,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		try {
-			 new TUI(new WmrNetworkController(new WmrNetworkUtilityClass("./wmrNetwork_data/")));
+			 new TUI(new TrainNetworkController(new TrainNetworkUtilityClass("./wmrNetwork_data/")));
 			 System.out.println("Able to locate data folder path / location.");
 		}
 		catch(FileNotFoundException e) 

@@ -42,7 +42,6 @@ public class TUI {
 	
 	/**
 	 * Obtains an user option and processes it.
-	 * @throws Exception 
 	 */
 	private void getAndProcessUserOption()  {
 		String stationA;
@@ -106,16 +105,16 @@ public class TUI {
 	private static String allWMRlines() {
 		StringBuilder allLines = new StringBuilder();
 		allLines.append("\na. Birmingham -- Dorridge -- Leamington Spa");
-		allLines.append("\nb. Cross City Line"); 
+		allLines.append("\nb. Cross City Line");
 		allLines.append("\nc. Birmingham -- Rugby -- Northampton -- London");
 		allLines.append("\nd. Nuneaton -- Coventry");
 		allLines.append("\ne. Watford -- St Albans Abbey");
 		allLines.append("\nf. Bletchley -- Bedford");
 		allLines.append("\ng. Crewe -- Stoke -- Stafford -- London");
-		allLines.append("\nh. Worcester -- Birmingham"); 
+		allLines.append("\nh. Worcester -- Birmingham");
 		allLines.append("\ni. Smethwick Galton Bridge Connections");
 		allLines.append("\nj. Birmingham -- Stratford-upon-Avon" );
-		allLines.append("\nk. Birmingham -- Wolverhampton -- Telford -- Shrewsbury"); 
+		allLines.append("\nk. Birmingham -- Wolverhampton -- Telford -- Shrewsbury");
 		allLines.append("\nl. Birmingham -- Worcester -- Hereford");
 		allLines.append("\nm. Birmingham -- Walsall -- Rugeley");
 		return allLines.toString();

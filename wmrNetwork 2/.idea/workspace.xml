@@ -2,20 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac2746df-b277-4046-91da-b3ec2e40c5ba" name="Default Changelist" comment="Managed to implement the graph structure.">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/GraphAdjacencyList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Node.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/WmrNetworkGraphBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/control/TrainNetworkController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/StepFreeAccessStations.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/TrainNetworkModelledData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/TrainNetworkNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/trainNetworkGraphBuilder/Graphs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/trainNetworkGraphTraversal/ListTerminisOfATrainLine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/trainNetworkHelper/TrainNetworkUtilityClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/control/WmrNetworkController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/control/WmrNetworkController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/TrainNetworkModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/TrainNetworkModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/WmrNetworkUtilityClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/WmrNetworkUtilityClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/WmrTrainLineModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/WmrTrainLineModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/queries/ListTerminiOfALine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/queries/ListTerminiOfALine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/queries/StationsInLineAndTotalTravelTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/queries/StationsInLineAndTotalTravelTime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/control/WmrNetworkController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/GraphAdjacencyList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Node.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/TrainNetworkModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/WmrNetworkGraphBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/WmrNetworkUtilityClass.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/WmrStepFreeAccessStationModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/WmrTrainLineModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/queries/ListTerminiOfALine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/queries/StationsInLineAndTotalTravelTime.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/TUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/TUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,13 +41,10 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="main" />
+        <entry key="$PROJECT_DIR$/.." value="implement-graph-design-initial-stage1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="1mnoHoEDKCnk5bGkcs831jQafRZ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -89,6 +92,14 @@
       <option name="presentableId" value="Default" />
       <updated>1610138674348</updated>
     </task>
+    <task id="LOCAL-00001" summary="Managed to implement the graph structure.">
+      <created>1610468282976</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1610468282976</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -110,44 +121,20 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/model/Node.java</url>
-          <line>2</line>
-          <option name="timeStamp" value="18" />
+          <url>file://$PROJECT_DIR$/src/control/TrainNetworkController.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/model/GraphAdjacencyList.java</url>
-          <line>35</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/model/TrainNetworkModel.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/model/GraphAdjacencyList.java</url>
-          <line>47</line>
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-field">
-          <url>file://$PROJECT_DIR$/src/model/TrainNetworkModel.java</url>
-          <line>17</line>
-          <properties field="trainLinesAndStationObjectMap" class="model.TrainNetworkModel" />
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/model/TrainNetworkModel.java</url>
-          <line>92</line>
-          <properties class="model.TrainNetworkModel" method="getNodeDataObjectForTest">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="30" />
+          <url>file://$PROJECT_DIR$/src/trainNetworkGraphBuilder/Graphs.java</url>
+          <line>62</line>
+          <option name="timeStamp" value="41" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
-        <watch expression="((LinkedHashMap.Entry)((LinkedHashMap)graphMap).entrySet().toArray()[0]).getValue()" custom="java.util.LinkedHashMap.Entry,java.util.LinkedHashMap" />
+        <watch expression="((LinkedHashMap.Entry)((LinkedHashMap)graphMap).entrySet().toArray()[0]).getValue()" language="JAVA" custom="java.util.LinkedHashMap.Entry,java.util.LinkedHashMap" />
       </configuration>
     </watches-manager>
   </component>
