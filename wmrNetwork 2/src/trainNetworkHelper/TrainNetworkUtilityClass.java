@@ -5,10 +5,7 @@ import model.TrainNetworkNode;
 import view.Main;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class TrainNetworkUtilityClass {
@@ -30,13 +27,17 @@ public class TrainNetworkUtilityClass {
             mainNetworkDataReader = new Scanner(new File(dataFolderPath + "/WMRlines.csv"));
             stepFreeDataReader = new Scanner(new File(dataFolderPath + "/WMRstationsWithStepFreeAccess.csv"));
             new StepFreeAccessStations().setListStepFreeAccessData(getAllStepFreeAccessStations());
-            new TrainNetworkModelledData(readAndModelTrainNetworkDataForGraphCreation());
+            //new TrainNetworkModelledData(readAndModelTrainNetworkDataForGraphCreation());
+            new TrainNetworkModelledData(readsAndModelTrainNetworkDataAsMapForGraphCreation());
         }
     }
 
 
 
 
+    /*
+     Read and return the data as an array list of Node objects.
+     */
     protected ArrayList<TrainNetworkNode>readAndModelTrainNetworkDataForGraphCreation()
     {
         ArrayList<TrainNetworkNode>netWorkDataMap = new ArrayList<TrainNetworkNode>();
@@ -54,6 +55,36 @@ public class TrainNetworkUtilityClass {
         }
         return netWorkDataMap;
     }
+
+
+    /*
+      Flexibility to have the data as a map as well if need.
+     */
+    protected Map<String, ArrayList<TrainNetworkNode>> readsAndModelTrainNetworkDataAsMapForGraphCreation(){
+        ArrayList<TrainNetworkNode> entireTrainLineData;
+        Map<String, ArrayList<TrainNetworkNode>> netWorkDataMap = new LinkedHashMap<>();
+        if(mainNetworkDataReader.hasNext()) {
+            mainNetworkDataReader.nextLine();
+        }
+        while(mainNetworkDataReader.hasNextLine())
+        {
+            String[] trainNetworkData = mainNetworkDataReader.nextLine().split(",");
+            String trainLine = trainNetworkData[0]; String fromToStationName = trainNetworkData[1];
+            String toFromStationName = trainNetworkData[2]; int travelTime = Integer.parseInt(trainNetworkData[3]);
+            TrainNetworkNode eachCsvDataLine = new TrainNetworkNode(trainLine, fromToStationName,toFromStationName,travelTime);
+            if(netWorkDataMap.containsKey(trainLine))
+            {
+                netWorkDataMap.get(trainLine).add(eachCsvDataLine);
+            }
+            else{
+                entireTrainLineData = new ArrayList<>();
+                entireTrainLineData.add(eachCsvDataLine);
+                netWorkDataMap.put(trainLine, entireTrainLineData);
+            }
+        }
+        return netWorkDataMap;
+    }
+
 
 
     /*
@@ -145,7 +176,7 @@ public class TrainNetworkUtilityClass {
         return lineId;
     }
 
-    private static void display(String info)
+    public static void display(String info)
     {
         System.out.println(info);
     }
@@ -166,12 +197,28 @@ public class TrainNetworkUtilityClass {
        It shows relationships and connections between nodes and there weight.
      */
     public static void printGraph(Map<String, List<TrainNetworkNode>> graph) {
-
-        for (Map.Entry<String, List<TrainNetworkNode>> entry : graph.entrySet()) {
-            System.out.println("\nAdjacency list of vertex: "+ entry.getKey());
-            for(int i = 0; i < entry.getValue().size(); i++){
-                System.out.print(entry.getValue().get(i));}
+        int x = 0;
+        for(String eachStationKey : graph.keySet()){
+            List<TrainNetworkNode> listOfStationObject = graph.get(eachStationKey);
+            for(TrainNetworkNode eachStationObject : listOfStationObject){
+                if((x == 0) && (eachStationKey.length() != 0)){
+                    String TrainLineName = eachStationObject.getTrainLine();
+                    //System.out.println(String.format("*** POSSIBLE ROUTE's ALONG '%s' *** :",TrainLineName));
+                    x++;
+                    break;
+                }
             }
-            System.out.println();
         }
+        for (Map.Entry<String, List<TrainNetworkNode>> entry : graph.entrySet()) {
+            List<String> alladjacentVertices = new ArrayList<>();
+            List<TrainNetworkNode> allConnectingStations = entry.getValue();
+            for(TrainNetworkNode connectStation : allConnectingStations){
+                String[] splitConnection = connectStation.toString().trim().split("->");
+                String adjacentNeighbour = splitConnection[1];
+                alladjacentVertices.add(adjacentNeighbour);
+            }
+            //System.out.print("\n" + entry.getKey() + " has an adjacent vertex of : \n "+alladjacentVertices.toString() +"\n");
+        }
+        System.out.println();
+    }
 }

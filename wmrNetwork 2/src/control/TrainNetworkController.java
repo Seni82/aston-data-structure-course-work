@@ -1,5 +1,5 @@
 package control;
-import trainNetworkGraphBuilder.Graphs;
+import trainNetworkGraphTraversal.ListOfTerminiOnATrainLine;
 import trainNetworkHelper.TrainNetworkUtilityClass;
 
 public class TrainNetworkController implements Controller{
@@ -10,7 +10,6 @@ public class TrainNetworkController implements Controller{
      * @version 2020 - 12 - 31
      */
 
-    private Graphs graphObject;
 
     /*
       Initialise controller with utility class object for access
@@ -19,14 +18,13 @@ public class TrainNetworkController implements Controller{
      */
     public TrainNetworkController(TrainNetworkUtilityClass utility)
     {
-        graphObject = new Graphs();
+        //graphObject = new Graphs();
     }
 
     @Override
     public String listTermini(String line)
     {
-        graphObject.buildListOfTerminiGraph(line);
-        return null;
+        return ListOfTerminiOnATrainLine.getAllTerminOfASpecifiedLine(line);
     }
 
     @Override

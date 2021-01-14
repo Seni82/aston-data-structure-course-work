@@ -1,27 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ac2746df-b277-4046-91da-b3ec2e40c5ba" name="Default Changelist" comment="Managed to implement the graph structure.">
-      <change afterPath="$PROJECT_DIR$/src/control/TrainNetworkController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/StepFreeAccessStations.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/TrainNetworkModelledData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/TrainNetworkNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/trainNetworkGraphBuilder/Graphs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/trainNetworkGraphTraversal/ListTerminisOfATrainLine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/trainNetworkHelper/TrainNetworkUtilityClass.java" afterDir="false" />
+    <list default="true" id="ac2746df-b277-4046-91da-b3ec2e40c5ba" name="Default Changelist" comment="GraphStructure completed and working - just queries/traversal remaining now">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/control/WmrNetworkController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/GraphAdjacencyList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Node.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/TrainNetworkModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/WmrNetworkGraphBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/WmrNetworkUtilityClass.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/WmrStepFreeAccessStationModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/WmrTrainLineModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/queries/ListTerminiOfALine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/queries/StationsInLineAndTotalTravelTime.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/TUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/TUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/control/TrainNetworkController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/control/TrainNetworkController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/TrainNetworkNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/TrainNetworkNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/trainNetworkGraphBuilder/Graphs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trainNetworkGraphBuilder/Graphs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/trainNetworkGraphTraversal/ListTerminisOfATrainLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trainNetworkGraphTraversal/ListOfTerminiOnATrainLine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/trainNetworkHelper/TrainNetworkUtilityClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trainNetworkHelper/TrainNetworkUtilityClass.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +85,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610468282976</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="GraphStructure completed and working - just queries/traversal remaining now">
+      <created>1610512867422</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1610512867422</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -115,20 +108,45 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Managed to implement the graph structure." />
-    <option name="LAST_COMMIT_MESSAGE" value="Managed to implement the graph structure." />
+    <MESSAGE value="GraphStructure completed and working - just queries/traversal remaining now" />
+    <option name="LAST_COMMIT_MESSAGE" value="GraphStructure completed and working - just queries/traversal remaining now" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/control/TrainNetworkController.java</url>
-          <line>27</line>
-          <option name="timeStamp" value="38" />
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/trainNetworkHelper/TrainNetworkUtilityClass.java</url>
+          <line>198</line>
+          <properties class="trainNetworkHelper.TrainNetworkUtilityClass" method="printGraph">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/trainNetworkGraphBuilder/Graphs.java</url>
+          <line>39</line>
+          <properties class="trainNetworkGraphBuilder.Graphs" method="addUndirectedEdge">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/trainNetworkGraphBuilder/Graphs.java</url>
+          <line>50</line>
+          <properties class="trainNetworkGraphBuilder.Graphs" method="isEdgeExistBetween">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="44" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/trainNetworkGraphBuilder/Graphs.java</url>
-          <line>62</line>
-          <option name="timeStamp" value="41" />
+          <url>file://$PROJECT_DIR$/src/control/TrainNetworkController.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/trainNetworkGraphTraversal/ListOfTerminiOnATrainLine.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="48" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -139,7 +157,7 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/wmrNetwork_2$Main.ic" NAME="Main Coverage Results" MODIFIED="1610381383195" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/wmrNetwork_2$Main.ic" NAME="Main Coverage Results" MODIFIED="1610586614781" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>view.*</FILTER>
     </SUITE>
   </component>

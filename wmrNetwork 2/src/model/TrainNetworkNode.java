@@ -83,12 +83,13 @@ public class TrainNetworkNode {
     }
 
 
+
     @Override
     public String toString()
     {
         return //String.format("%s:\n", getTrainLine()) +
                 //String.format("%s  -> %s  - %s \n",
-                String.format("%s -> %s - %s ",
+                String.format("%s -> %s -> %s ",
                         getFromToStation(),
                         getToFromStation(),
                         getTravelTime());
