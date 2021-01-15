@@ -22,7 +22,7 @@ public class TrainNetworkModelledData {
       key of string and value of arrayList<trainNetworkNode>.
       This will be exposed later for use.
      */
-    private static Map<String, ArrayList<TrainNetworkNode>> listOfNodesAsAMap;
+    private static Map<TrainNetworkNode, ArrayList<TrainNetworkNode>> listOfNodesAsAMap;
 
 
 
@@ -43,7 +43,7 @@ public class TrainNetworkModelledData {
     /*
       Initialising the map of node list.
      */
-    public TrainNetworkModelledData(Map<String, ArrayList<TrainNetworkNode>> listOfNodesAsAsMap)
+    public TrainNetworkModelledData(Map<TrainNetworkNode, ArrayList<TrainNetworkNode>> listOfNodesAsAsMap)
     {
         this.listOfNodesAsAMap = listOfNodesAsAsMap;
     }
@@ -68,7 +68,7 @@ public class TrainNetworkModelledData {
     /*
        Getter method to expose field @listOfNodeAsMap.
      */
-    public static Map<String, ArrayList<TrainNetworkNode>> getListOfNodesAsAMap()
+    public static Map<TrainNetworkNode, ArrayList<TrainNetworkNode>> getListOfNodesAsAMap()
     {
         return listOfNodesAsAMap;
     }

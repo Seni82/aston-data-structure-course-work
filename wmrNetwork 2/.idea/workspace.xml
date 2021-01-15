@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ac2746df-b277-4046-91da-b3ec2e40c5ba" name="Default Changelist" comment="requirement one done - list of termini.">
-      <change afterPath="$PROJECT_DIR$/src/trainNetworkGraphTraversal/AllLinesAndTravelTimeAlongTermini.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/trainNetworkGraphTraversal/CumulativeTravelTimeOnALine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/trainNetworkGraphTraversal/DFS_AllPathsBetweenTwoStations.java" afterDir="false" />
+    <list default="true" id="ac2746df-b277-4046-91da-b3ec2e40c5ba" name="Default Changelist" comment="before converting to object.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/control/TrainNetworkController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/control/TrainNetworkController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/TrainNetworkModelledData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/TrainNetworkModelledData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/TrainNetworkNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/TrainNetworkNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/trainNetworkGraphBuilder/Graphs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trainNetworkGraphBuilder/Graphs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/trainNetworkGraphTraversal/DFS_AllPathsBetweenTwoStations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trainNetworkGraphTraversal/DFS_AllPathsBetweenTwoStations.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/trainNetworkGraphTraversal/ListOfTerminiOnATrainLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trainNetworkGraphTraversal/ListOfTerminiOnATrainLine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/trainNetworkHelper/TrainNetworkUtilityClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trainNetworkHelper/TrainNetworkUtilityClass.java" afterDir="false" />
     </list>
@@ -116,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610587502166</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="before converting to object.">
+      <created>1610675036942</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1610675036942</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -135,19 +140,15 @@
     <MESSAGE value="Managed to implement the graph structure." />
     <MESSAGE value="GraphStructure completed and working - just queries/traversal remaining now" />
     <MESSAGE value="requirement one done - list of termini." />
-    <option name="LAST_COMMIT_MESSAGE" value="requirement one done - list of termini." />
+    <MESSAGE value="before converting to object." />
+    <option name="LAST_COMMIT_MESSAGE" value="before converting to object." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/trainNetworkGraphTraversal/ListOfTerminiOnATrainLine.java</url>
-          <line>22</line>
-          <option name="timeStamp" value="48" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/trainNetworkGraphBuilder/Graphs.java</url>
-          <line>120</line>
+          <line>84</line>
           <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -162,8 +163,24 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/trainNetworkGraphBuilder/Graphs.java</url>
-          <line>110</line>
-          <option name="timeStamp" value="67" />
+          <line>74</line>
+          <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/trainNetworkHelper/TrainNetworkUtilityClass.java</url>
+          <line>198</line>
+          <properties class="trainNetworkHelper.TrainNetworkUtilityClass" method="printGraph">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/trainNetworkGraphTraversal/ListOfTerminiOnATrainLine.java</url>
+          <line>16</line>
+          <properties class="trainNetworkGraphTraversal.ListOfTerminiOnATrainLine" method="getAllTerminiOfASpecifiedLine">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="72" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

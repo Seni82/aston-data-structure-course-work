@@ -12,7 +12,7 @@ public class Graphs {
     /*
        private map field with string as key and list of networkNode as objects.
      */
-    private Map<String, List<TrainNetworkNode>> adjacencyListGraphMap;
+    private Map<TrainNetworkNode, List<TrainNetworkNode>> adjacencyListGraphMap;
 
 
     /*
@@ -26,20 +26,12 @@ public class Graphs {
     /*
      Add nodes to graph.
      */
-    public void addEdge(String trainLine, String fromToStation, String toFromStation, int travelTime) {
-        if (!adjacencyListGraphMap.containsKey(fromToStation)) {
-            adjacencyListGraphMap.put(fromToStation, new LinkedList<>());
+    public void addUndirectedEdge(TrainNetworkNode node) {
+        if (!adjacencyListGraphMap.containsKey(node)) {
+            adjacencyListGraphMap.put(node, new LinkedList<>());
         }
-        adjacencyListGraphMap.get(fromToStation).add(new TrainNetworkNode(trainLine, fromToStation, toFromStation, travelTime));
-    }
-
-
-    /*
-      Add bi-directional node relationship to the graph.
-     */
-    public void addUndirectedEdge(String trainLine, String fromToStation, String toFromStation, int travelTime) {
-        addEdge(trainLine, fromToStation, toFromStation, travelTime);
-        addEdge(trainLine, toFromStation, fromToStation, travelTime);
+        adjacencyListGraphMap.get(node).add(new TrainNetworkNode(node.getTrainLine(), node.getFromToStation(), node.getToFromStation(), node.getTravelTime()));
+        adjacencyListGraphMap.get(node).add(new TrainNetworkNode(node.getTrainLine(), node.getToFromStation(), node.getFromToStation(), node.getTravelTime()));
     }
 
 
@@ -49,42 +41,14 @@ public class Graphs {
        Split by -> and get the data at index 1 for comparison.
        true if you want to use method as string comparison or false if object
      */
-    public boolean isEdgeExistBetween(String fromToStation, String toFromStation) {
-        String[] splittedNode={}; String edge = "";
-        String addEdge = "";
-        ArrayList<String> listOfEdges = new ArrayList<>();
-        boolean isEdgePresent = false;
-        if(adjacencyListGraphMap.containsKey(fromToStation))
-        {
-            List<TrainNetworkNode> listOfAdjacentNode = adjacencyListGraphMap.get(fromToStation);
-            for(TrainNetworkNode eachConnectedNode : listOfAdjacentNode){
-                    splittedNode = eachConnectedNode.toString().trim().split("\\s*->\\s*");
-                    if (splittedNode.length != 0) {
-                        if(splittedNode.length == 1){
-                            addEdge = splittedNode[0];
-                        }else {
-                            addEdge = splittedNode[1];
-                        }
-                    }
-                    //addEdge = eachConnectedNode.getToFromStation();
-                listOfEdges.add(addEdge);
-            }
-            isEdgePresent = listOfEdges.contains(toFromStation);
-            //System.out.println("\nIs edge present for "+ fromToStation+" and "+toFromStation + ": "+isEdgePresent);
-            //System.out.println(fromToStation+ " has connection with \n"+ listOfEdges.toString());
-        }
-        else{
-            //System.out.println(fromToStation +" does not exist as a from (key) station in the map" +
-              //      "therefore know edge present between "+fromToStation+" and "+ toFromStation);
-        }
-        return isEdgePresent;
+    public boolean isEdgeExistBetween(TrainNetworkNode source, TrainNetworkNode destination) {
+        return adjacencyListGraphMap.containsKey(source) && adjacencyListGraphMap.get(source).contains(destination);
     }
 
 
 
-
     //does a station have an edge.
-    public boolean hasAnEdge(String source){
+    public boolean hasAnEdge(TrainNetworkNode source){
         if(adjacencyListGraphMap.get(source) != null){
             return true;
         }else return false;
@@ -95,20 +59,20 @@ public class Graphs {
     /*
        This should create a graph representation of all train line.
      */
-    public Map<String, List<TrainNetworkNode>> buildGraphForSpecifiedTrainLine(String trainLineName) {
+    public Map<TrainNetworkNode, List<TrainNetworkNode>> buildGraphForSpecifiedTrainLine(TrainNetworkNode lineName) {
         //Get data as map is more faster and efficient as suppose to arraylist previously used.
-        Map<String, ArrayList<TrainNetworkNode>> mapData = TrainNetworkModelledData.getListOfNodesAsAMap();
-        String lineName = TrainNetworkUtilityClass.returnMappedTrainLineToSuppliedAlphabet(trainLineName);
+        Map<TrainNetworkNode, ArrayList<TrainNetworkNode>> mapData = TrainNetworkModelledData.getListOfNodesAsAMap();
         ArrayList<TrainNetworkNode> dataForGraph = mapData.get(lineName);
         for (TrainNetworkNode trainNetwork : dataForGraph) {
-            addUndirectedEdge(trainNetwork.getTrainLine(),
-                    trainNetwork.getFromToStation(),
-                    trainNetwork.getToFromStation(),
-                    trainNetwork.getTravelTime());
-            isEdgeExistBetween(trainNetwork.getFromToStation(), trainNetwork.getToFromStation());
+            addUndirectedEdge(trainNetwork);
+            isEdgeExistBetween(trainNetwork, trainNetwork);
         }
         TrainNetworkUtilityClass.printGraph(adjacencyListGraphMap);
         printAdjacentListOfEachVertex();
+        TrainNetworkNode source = new TrainNetworkNode("Nuneaton – Coventry","Nuneaton","Bedworth",12);
+        //TrainNetworkNode destination = new TrainNetworkNode("Birmingham – Rugby – Northampton – London", "Coventry", "Rugby", 13);
+        //dfs_getAllTermini(adjacencyListGraphMap, source, destination);
+        BFS_algorithm(source,adjacencyListGraphMap);
         return adjacencyListGraphMap;
     }
 
@@ -118,30 +82,26 @@ public class Graphs {
 
     public String buildGraphForTotalTravelTimeForAllLines() {
         ArrayList<String> allLinesAndTravelTime = new ArrayList<String>();
-        Map<String, ArrayList<TrainNetworkNode>> mapData = TrainNetworkModelledData.getListOfNodesAsAMap();
-        for (String key : mapData.keySet()) {
+        Map<TrainNetworkNode, ArrayList<TrainNetworkNode>> mapData = TrainNetworkModelledData.getListOfNodesAsAMap();
+        for (TrainNetworkNode key : mapData.keySet()) {
             allLinesAndTravelTime = new ArrayList<String>();
             String trainLineName = "";
             adjacencyListGraphMap.clear();
             ArrayList<TrainNetworkNode> dataForGraph = mapData.get(key);
             for (TrainNetworkNode trainNetwork : dataForGraph) {
-                addUndirectedEdge(trainNetwork.getTrainLine(),
-                        trainNetwork.getFromToStation(),
-                        trainNetwork.getToFromStation(),
-                        trainNetwork.getTravelTime());
+                addUndirectedEdge(trainNetwork);
                 trainLineName = trainNetwork.getTrainLine();
             }
             allLinesAndTravelTime.add(String.format("%s:",trainLineName));
-            //String travelTime = calculateTravelTimeBetweenTermini();
-            //allLinesAndTravelTime.add(travelTime);
         }
         return allLinesAndTravelTime.toString();
     }
 
 
-    public String printAdjacentListOfEachVertex(){
+    public void printAdjacentListOfEachVertex(){
+        /*
         StringBuilder builder = new StringBuilder();
-        for(String key : adjacencyListGraphMap.keySet()){
+        for(TrainNetworkNode key : adjacencyListGraphMap.keySet()){
             builder.append(key).append(":");
             for(TrainNetworkNode adj : adjacencyListGraphMap.get(key)){
                 builder.append(adj.toString()).append(" ");
@@ -149,6 +109,14 @@ public class Graphs {
             builder.append("\n");
         }
         return builder.toString();
+        */
+        for(TrainNetworkNode node : adjacencyListGraphMap.keySet()){
+            System.out.println("The " + node.getFromToStation() + " has an edge towards: ");
+            for(TrainNetworkNode neighbor : adjacencyListGraphMap.get(node)){
+                System.out.print(neighbor.getToFromStation() + "\n");
+            }
+            System.out.println();
+        }
     }
 
 
@@ -159,14 +127,49 @@ public class Graphs {
     }
 
 
+    public boolean dfs_getAllTermini(Map<TrainNetworkNode, List<TrainNetworkNode>> map_dfs, TrainNetworkNode source, TrainNetworkNode destination){
+
+        HashSet<TrainNetworkNode> visited = new HashSet<>();
+        return pathExists(source, destination, visited, map_dfs);
+
+    }
+
+    public boolean pathExists(TrainNetworkNode source, TrainNetworkNode destination, HashSet<TrainNetworkNode> visited, Map<TrainNetworkNode, List<TrainNetworkNode>> map_dfs){
+        if(visited.contains(source)){return false;}
+
+        visited.add(source);
+        if(source == destination){
+            return true;
+        }
+        for(TrainNetworkNode neighbor : map_dfs.get(source)){
+            if(pathExists(neighbor, destination, visited, map_dfs))
+                return true;
+        }
+        return false;
+    }
 
 
+    public void BFS_algorithm(TrainNetworkNode station, Map<TrainNetworkNode, List<TrainNetworkNode>> map){
+        boolean connected = false;
+        Set<TrainNetworkNode> visited = new HashSet<>();
+        Queue<TrainNetworkNode> shit = new LinkedList<TrainNetworkNode>();
+        shit.add(station);
+        visited.add(station);
+        while(!shit.isEmpty()){
+            TrainNetworkNode newStation = shit.poll();
+            if(station.getFromToStation().equals(station.getToFromStation())){
 
-
-
-
-
-
+                connected = true;
+                break;
+            }
+            for(TrainNetworkNode edge : map.get(newStation)){
+                if(!visited.contains(edge)){
+                    shit.add(edge);
+                    visited.add(edge);
+                }
+            }
+        }
+    }
 }
 
 

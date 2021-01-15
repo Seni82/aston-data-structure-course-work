@@ -10,7 +10,7 @@ public class TrainNetworkNode {
     private String fromToStation;
     private String toFromStation;
     private int travelTime;
-    private boolean visited;
+    public boolean visited;
 
 
     /*
@@ -22,6 +22,7 @@ public class TrainNetworkNode {
         this.fromToStation = fromToStation;
         this.toFromStation = toFromStation;
         this.travelTime = travelTime;
+        visited = false;
     }
 
 
@@ -53,14 +54,13 @@ public class TrainNetworkNode {
     }
 
 
-    public void visited(){
-        visited = true;
-    }
-
     public void unvisited(){
         visited = false;
     }
 
+    public void visit(){
+        visited = true;
+    }
 
     /*
        Overrides @equals() , @hashcode() and @toString() method to help with object comparison
@@ -93,11 +93,14 @@ public class TrainNetworkNode {
     @Override
     public String toString()
     {
-        return //String.format("%s:\n", getTrainLine()) +
+        return //getFromToStation(), getFromToStation(), getTravelTime());
+
+                //String.format("%s:\n", getTrainLine()) +
                 //String.format("%s  -> %s  - %s \n",
-                String.format("%s -> %s -> %s ",
+                String.format("%s -> %s - %s",
                         getFromToStation(),
                         getToFromStation(),
                         getTravelTime());
+
     }
 }

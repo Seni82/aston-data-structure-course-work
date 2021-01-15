@@ -60,9 +60,9 @@ public class TrainNetworkUtilityClass {
     /*
       Flexibility to have the data as a map as well if need.
      */
-    protected Map<String, ArrayList<TrainNetworkNode>> readsAndModelTrainNetworkDataAsMapForGraphCreation(){
+    protected Map<TrainNetworkNode, ArrayList<TrainNetworkNode>> readsAndModelTrainNetworkDataAsMapForGraphCreation(){
         ArrayList<TrainNetworkNode> entireTrainLineData;
-        Map<String, ArrayList<TrainNetworkNode>> netWorkDataMap = new LinkedHashMap<>();
+        Map<TrainNetworkNode, ArrayList<TrainNetworkNode>> netWorkDataMap = new LinkedHashMap<>();
         if(mainNetworkDataReader.hasNext()) {
             mainNetworkDataReader.nextLine();
         }
@@ -72,14 +72,14 @@ public class TrainNetworkUtilityClass {
             String trainLine = trainNetworkData[0]; String fromToStationName = trainNetworkData[1];
             String toFromStationName = trainNetworkData[2]; int travelTime = Integer.parseInt(trainNetworkData[3]);
             TrainNetworkNode eachCsvDataLine = new TrainNetworkNode(trainLine, fromToStationName,toFromStationName,travelTime);
-            if(netWorkDataMap.containsKey(trainLine))
+            if(netWorkDataMap.containsKey(eachCsvDataLine))
             {
-                netWorkDataMap.get(trainLine).add(eachCsvDataLine);
+                netWorkDataMap.get(eachCsvDataLine).add(eachCsvDataLine);
             }
             else{
                 entireTrainLineData = new ArrayList<>();
                 entireTrainLineData.add(eachCsvDataLine);
-                netWorkDataMap.put(trainLine, entireTrainLineData);
+                netWorkDataMap.put(eachCsvDataLine, entireTrainLineData);
             }
         }
         return netWorkDataMap;
@@ -196,12 +196,12 @@ public class TrainNetworkUtilityClass {
        Helper function to help print graph created for visibility.
        It shows relationships and connections between nodes and there weight.
      */
-    public static void printGraph(Map<String, List<TrainNetworkNode>> graph) {
+    public static void printGraph(Map<TrainNetworkNode, List<TrainNetworkNode>> graph) {
         int x = 0;
-        for(String eachStationKey : graph.keySet()){
+        for(TrainNetworkNode eachStationKey : graph.keySet()){
             List<TrainNetworkNode> listOfStationObject = graph.get(eachStationKey);
             for(TrainNetworkNode eachStationObject : listOfStationObject){
-                if((x == 0) && (eachStationKey.length() != 0)){
+                if((x == 0) && (eachStationKey.toString().length() != 0)){
                     String TrainLineName = eachStationObject.getTrainLine();
                     System.out.println(String.format("*** POSSIBLE ROUTE's ALONG '%s' *** :",TrainLineName));
                     x++;
@@ -209,15 +209,11 @@ public class TrainNetworkUtilityClass {
                 }
             }
         }
-        for (Map.Entry<String, List<TrainNetworkNode>> entry : graph.entrySet()) {
-            List<String> alladjacentVertices = new ArrayList<>();
+        for (Map.Entry<TrainNetworkNode, List<TrainNetworkNode>> entry : graph.entrySet()) {
+            List<TrainNetworkNode> alladjacentVertices = new ArrayList<>();
             List<TrainNetworkNode> allConnectingStations = entry.getValue();
-            for(TrainNetworkNode connectStation : allConnectingStations){
-                String[] splitConnection = connectStation.toString().trim().split("->");
-                String adjacentNeighbour = splitConnection[1];
-                alladjacentVertices.add(adjacentNeighbour);
-            }
-            System.out.print("\n" + entry.getKey() + " has an adjacent vertex of : \n "+alladjacentVertices.toString() +"\n");
+                alladjacentVertices.addAll(allConnectingStations);
+                //System.out.print("entry.getKey() + " + entry.getKey() + "has an adjacent vertex of : \n "+alladjacentVertices.toString() +"\n");
         }
         System.out.println();
     }
@@ -235,6 +231,5 @@ public class TrainNetworkUtilityClass {
         String[] splittedData = dataToConvert.trim().split(splitBy);
         return splittedData;
     }
-
 
 }

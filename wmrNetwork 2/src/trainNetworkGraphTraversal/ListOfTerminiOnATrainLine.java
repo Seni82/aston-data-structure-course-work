@@ -20,8 +20,9 @@ public class ListOfTerminiOnATrainLine {
         Graphs listOfterminiGraph = new Graphs();
         List<String> listOfTermini = new ArrayList<>();
         String trainLineRequested = TrainNetworkUtilityClass.returnMappedTrainLineToSuppliedAlphabet(trainLine);
-        Map<String, List<TrainNetworkNode>> builtGraphMap = listOfterminiGraph.buildGraphForSpecifiedTrainLine(trainLine);
-        for(Map.Entry<String, List<TrainNetworkNode>> stationName : builtGraphMap.entrySet()){
+        TrainNetworkNode trainLineName = new TrainNetworkNode(trainLineRequested,"","", 0);
+        Map<TrainNetworkNode, List<TrainNetworkNode>> builtGraphMap = listOfterminiGraph.buildGraphForSpecifiedTrainLine(trainLineName);
+        for(Map.Entry<TrainNetworkNode, List<TrainNetworkNode>> stationName : builtGraphMap.entrySet()){
             if(stationName.getValue().size() <= 1)
             {
                 listOfTermini.add(stationName.getKey().toString());
