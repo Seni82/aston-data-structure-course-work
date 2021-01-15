@@ -1,5 +1,7 @@
 package control;
+import trainNetworkGraphTraversal.AllLinesAndTravelTimeAlongTermini;
 import trainNetworkGraphTraversal.ListOfTerminiOnATrainLine;
+import trainNetworkGraphTraversal.CumulativeTravelTimeOnALine;
 import trainNetworkHelper.TrainNetworkUtilityClass;
 
 public class TrainNetworkController implements Controller{
@@ -18,23 +20,22 @@ public class TrainNetworkController implements Controller{
      */
     public TrainNetworkController(TrainNetworkUtilityClass utility)
     {
-        //graphObject = new Graphs();
     }
 
     @Override
     public String listTermini(String line)
     {
-        return ListOfTerminiOnATrainLine.getAllTerminOfASpecifiedLine(line);
+        return ListOfTerminiOnATrainLine.getAllTerminiOfASpecifiedLine(line);
     }
 
     @Override
     public String listStationsInLine(String line) {
-        return null;
+        return CumulativeTravelTimeOnALine.listAllStationsAndCumulativeTravelTime(line);
     }
 
     @Override
     public String listAllLines() {
-        return null;
+        return AllLinesAndTravelTimeAlongTermini.AllLinesAndTotalTravelTimeBetweenStations();
     }
 
     @Override

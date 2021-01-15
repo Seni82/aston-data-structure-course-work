@@ -2,19 +2,23 @@ package trainNetworkGraphTraversal;
 import model.TrainNetworkNode;
 import trainNetworkGraphBuilder.Graphs;
 import trainNetworkHelper.TrainNetworkUtilityClass;
-
 import java.util.*;
 
+
+/*
+ * @author Ganiyu Isola
+ * @version 2021 - 01 - 14
+ */
 
 public class ListOfTerminiOnATrainLine {
 
 
     //Query to get list of termini from a specified line
-    public static String getAllTerminOfASpecifiedLine(String trainLine)
+    public static String getAllTerminiOfASpecifiedLine(String trainLine)
     {
         long startTime = (new Date()).getTime();
         Graphs listOfterminiGraph = new Graphs();
-        List<String> listOfTermini = new LinkedList<>();
+        List<String> listOfTermini = new ArrayList<>();
         String trainLineRequested = TrainNetworkUtilityClass.returnMappedTrainLineToSuppliedAlphabet(trainLine);
         Map<String, List<TrainNetworkNode>> builtGraphMap = listOfterminiGraph.buildGraphForSpecifiedTrainLine(trainLine);
         for(Map.Entry<String, List<TrainNetworkNode>> stationName : builtGraphMap.entrySet()){
@@ -23,11 +27,9 @@ public class ListOfTerminiOnATrainLine {
                 listOfTermini.add(stationName.getKey().toString());
             }
         }
-        long endTime = (new Date()).getTime();
-        long elapsedTime = endTime - startTime;
-        TrainNetworkUtilityClass.display(String.format("\n**Termini query on '%s' line executes in '(%s milliseconds.)'\n",
-                trainLineRequested, elapsedTime));
-        TrainNetworkUtilityClass.display(String.format("List of termini on '%s' below: ",trainLineRequested));
+        TrainNetworkUtilityClass.display(String.format("\n**Termini query on '%s' line executes in (%s milliseconds)**.\n",
+                trainLineRequested.toUpperCase(), TrainNetworkUtilityClass.getElapsedTime(startTime)));
+        TrainNetworkUtilityClass.display(String.format("List of termini on '%s' below: ",trainLineRequested.toUpperCase()));
         return listOfTermini.toString();
     }
 

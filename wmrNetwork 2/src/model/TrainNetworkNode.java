@@ -10,6 +10,7 @@ public class TrainNetworkNode {
     private String fromToStation;
     private String toFromStation;
     private int travelTime;
+    private boolean visited;
 
 
     /*
@@ -52,7 +53,13 @@ public class TrainNetworkNode {
     }
 
 
+    public void visited(){
+        visited = true;
+    }
 
+    public void unvisited(){
+        visited = false;
+    }
 
 
     /*
@@ -83,7 +90,6 @@ public class TrainNetworkNode {
     }
 
 
-
     @Override
     public String toString()
     {
@@ -94,6 +100,4 @@ public class TrainNetworkNode {
                         getToFromStation(),
                         getTravelTime());
     }
-
-
 }

@@ -203,7 +203,7 @@ public class TrainNetworkUtilityClass {
             for(TrainNetworkNode eachStationObject : listOfStationObject){
                 if((x == 0) && (eachStationKey.length() != 0)){
                     String TrainLineName = eachStationObject.getTrainLine();
-                    //System.out.println(String.format("*** POSSIBLE ROUTE's ALONG '%s' *** :",TrainLineName));
+                    System.out.println(String.format("*** POSSIBLE ROUTE's ALONG '%s' *** :",TrainLineName));
                     x++;
                     break;
                 }
@@ -217,8 +217,24 @@ public class TrainNetworkUtilityClass {
                 String adjacentNeighbour = splitConnection[1];
                 alladjacentVertices.add(adjacentNeighbour);
             }
-            //System.out.print("\n" + entry.getKey() + " has an adjacent vertex of : \n "+alladjacentVertices.toString() +"\n");
+            System.out.print("\n" + entry.getKey() + " has an adjacent vertex of : \n "+alladjacentVertices.toString() +"\n");
         }
         System.out.println();
     }
+
+
+    //This returns the time difference in miliseconds.
+    public static long getElapsedTime(long startTime){
+        long endTime = (new Date()).getTime();
+        long elapsedTime = endTime - startTime;
+        return elapsedTime;
+    }
+
+
+    public static String[] convertDataToNeededFormat(String dataToConvert, String splitBy){
+        String[] splittedData = dataToConvert.trim().split(splitBy);
+        return splittedData;
+    }
+
+
 }
