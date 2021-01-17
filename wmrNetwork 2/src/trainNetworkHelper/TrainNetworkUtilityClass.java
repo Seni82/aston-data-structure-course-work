@@ -214,8 +214,12 @@ public class TrainNetworkUtilityClass {
             List<TrainNetworkNode> allConnectingStations = entry.getValue();
             for(TrainNetworkNode connectStation : allConnectingStations){
                 String[] splitConnection = connectStation.toString().trim().split("->");
-                String adjacentNeighbour = splitConnection[1];
-                alladjacentVertices.add(adjacentNeighbour);
+                //add a check here
+                String adjacentNeighbour;
+                if(splitConnection.length > 1){adjacentNeighbour = splitConnection[1];}
+                else{adjacentNeighbour = splitConnection[0];}
+                //alladjacentVertices.add(adjacentNeighbour);
+                alladjacentVertices.add(connectStation.getToFromStation());
             }
             System.out.print("\n" + entry.getKey() + " has an adjacent vertex of : \n "+alladjacentVertices.toString() +"\n");
         }

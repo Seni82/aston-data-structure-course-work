@@ -1,8 +1,10 @@
 package trainNetworkGraphTraversal;
+import model.StepFreeAccessStations;
 import model.TrainNetworkNode;
 import trainNetworkGraphBuilder.Graphs;
 import trainNetworkHelper.TrainNetworkUtilityClass;
 import java.util.*;
+import java.util.logging.Logger;
 
 
 /*
@@ -12,6 +14,7 @@ import java.util.*;
 
 public class ListOfTerminiOnATrainLine {
 
+    static Logger println = Logger.getLogger(String.valueOf(ListOfTerminiOnATrainLine.class));
 
     //Query to get list of termini from a specified line
     public static String getAllTerminiOfASpecifiedLine(String trainLine)
@@ -30,6 +33,7 @@ public class ListOfTerminiOnATrainLine {
         TrainNetworkUtilityClass.display(String.format("\n**Termini query on '%s' line executes in (%s milliseconds)**.\n",
                 trainLineRequested.toUpperCase(), TrainNetworkUtilityClass.getElapsedTime(startTime)));
         TrainNetworkUtilityClass.display(String.format("List of termini on '%s' below: ",trainLineRequested.toUpperCase()));
+        println.info(String.format("List of terminis on '%s' line : \n %s", trainLineRequested.toUpperCase(), listOfTermini.toString()));
         return listOfTermini.toString();
     }
 

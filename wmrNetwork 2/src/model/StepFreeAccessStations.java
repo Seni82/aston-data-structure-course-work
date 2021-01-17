@@ -1,9 +1,11 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class StepFreeAccessStations {
 
+    static Logger println = Logger.getLogger(String.valueOf(StepFreeAccessStations.class));
     /*
      * This holds the list of step free access train staions.
      */

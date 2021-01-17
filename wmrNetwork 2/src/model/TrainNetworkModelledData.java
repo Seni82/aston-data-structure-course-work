@@ -1,6 +1,7 @@
 package model;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.logging.Logger;
 
 /*
   @author Ganiyu Isola
@@ -9,6 +10,7 @@ import java.util.Map;
 
 public class TrainNetworkModelledData {
 
+    static Logger println = Logger.getLogger(String.valueOf(TrainNetworkModelledData.class));
 
             /********** 2 PRIVATE FIELDS BELOW *********/
     /*

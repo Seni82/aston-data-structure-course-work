@@ -2,15 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac2746df-b277-4046-91da-b3ec2e40c5ba" name="Default Changelist" comment="requirement one done - list of termini.">
-      <change afterPath="$PROJECT_DIR$/src/trainNetworkGraphTraversal/AllLinesAndTravelTimeAlongTermini.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/trainNetworkGraphTraversal/CumulativeTravelTimeOnALine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/trainNetworkGraphTraversal/DFS_AllPathsBetweenTwoStations.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/log4j.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/trainNetworkHelper/FileWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/control/TrainNetworkController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/control/TrainNetworkController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/TrainNetworkNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/TrainNetworkNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/StepFreeAccessStations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/StepFreeAccessStations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/TrainNetworkModelledData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/TrainNetworkModelledData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/trainNetworkGraphBuilder/Graphs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trainNetworkGraphBuilder/Graphs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/trainNetworkGraphTraversal/ListOfTerminiOnATrainLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trainNetworkGraphTraversal/ListOfTerminiOnATrainLine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/trainNetworkHelper/TrainNetworkUtilityClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trainNetworkHelper/TrainNetworkUtilityClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wmrNetwork 2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/wmrNetwork 2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wmrNetwork_data/WMRlines.csv" beforeDir="false" afterPath="$PROJECT_DIR$/wmrNetwork_data/WMRlines.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,7 +20,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileColors">
-    <fileColor scope="Open Files" color="Yellow" />
+    <fileColor scope="Open Files" color="Green" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -30,10 +32,18 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="das-course-clean-implementation" />
+        <entry key="$PROJECT_DIR$/.." value="list-of-termini-implemented" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1mnoHoEDKCnk5bGkcs831jQafRZ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -42,9 +52,12 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -52,8 +65,13 @@
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+  </component>
   <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="view.Main" />
       <module name="wmrNetwork 2" />
       <extension name="coverage">
@@ -66,11 +84,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Main" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -80,6 +93,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610138674348</updated>
+      <workItem from="1610845159849" duration="457000" />
+      <workItem from="1610845654912" duration="68000" />
+      <workItem from="1610845728034" duration="812000" />
+      <workItem from="1610846621016" duration="362000" />
+      <workItem from="1610847680127" duration="132000" />
+      <workItem from="1610847823744" duration="168000" />
+      <workItem from="1610848004071" duration="1746000" />
+      <workItem from="1610849785646" duration="480000" />
+      <workItem from="1610850430805" duration="8104000" />
+      <workItem from="1610870301971" duration="110000" />
     </task>
     <task id="LOCAL-00001" summary="Managed to implement the graph structure.">
       <created>1610468282976</created>
@@ -119,6 +142,9 @@
     <option name="localTasksCounter" value="6" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -141,16 +167,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/trainNetworkGraphTraversal/ListOfTerminiOnATrainLine.java</url>
-          <line>22</line>
-          <option name="timeStamp" value="48" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/trainNetworkGraphBuilder/Graphs.java</url>
-          <line>120</line>
-          <option name="timeStamp" value="60" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/control/TrainNetworkController.java</url>
           <line>37</line>
           <option name="timeStamp" value="63" />
@@ -162,7 +178,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/trainNetworkGraphBuilder/Graphs.java</url>
-          <line>110</line>
+          <line>111</line>
           <option name="timeStamp" value="67" />
         </line-breakpoint>
       </breakpoints>
@@ -174,7 +190,7 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/wmrNetwork_2$Main.ic" NAME="Main Coverage Results" MODIFIED="1610669981921" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/wmrNetwork_2$Main.ic" NAME="Main Coverage Results" MODIFIED="1610868641190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>view.*</FILTER>
     </SUITE>
   </component>
