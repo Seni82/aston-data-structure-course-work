@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac2746df-b277-4046-91da-b3ec2e40c5ba" name="Default Changelist" comment="before converting to object.">
+      <change afterPath="$PROJECT_DIR$/src/trainNetworkGraphBuilder/GraphAdjacencyListWeighted.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/trainNetworkGraphBuilder/GraphAdjacencyListWeighted1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/TrainNetworkModelledData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/TrainNetworkModelledData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/TrainNetworkNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/TrainNetworkNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/trainNetworkGraphBuilder/Graphs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trainNetworkGraphBuilder/Graphs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/trainNetworkGraphTraversal/DFS_AllPathsBetweenTwoStations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trainNetworkGraphTraversal/DFS_AllPathsBetweenTwoStations.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/trainNetworkGraphTraversal/ListOfTerminiOnATrainLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trainNetworkGraphTraversal/ListOfTerminiOnATrainLine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/trainNetworkHelper/TrainNetworkUtilityClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/trainNetworkHelper/TrainNetworkUtilityClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wmrNetwork 2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/wmrNetwork 2.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="das-course-clean-implementation" />
+        <entry key="$PROJECT_DIR$/.." value="map-key-from-string-to-object" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -50,7 +51,20 @@
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.GraphAdjacencyListWeighted">
+    <configuration name="GraphAdjacencyListWeighted" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="trainNetworkGraphBuilder.GraphAdjacencyListWeighted" />
+      <module name="wmrNetwork 2" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="trainNetworkGraphBuilder.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="view.Main" />
       <module name="wmrNetwork 2" />
@@ -64,8 +78,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.GraphAdjacencyListWeighted" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -148,7 +174,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/trainNetworkGraphBuilder/Graphs.java</url>
-          <line>84</line>
+          <line>86</line>
           <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -163,35 +189,19 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/trainNetworkGraphBuilder/Graphs.java</url>
-          <line>74</line>
+          <line>76</line>
           <option name="timeStamp" value="74" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/trainNetworkHelper/TrainNetworkUtilityClass.java</url>
-          <line>198</line>
-          <properties class="trainNetworkHelper.TrainNetworkUtilityClass" method="printGraph">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="71" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
+        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/trainNetworkGraphTraversal/ListOfTerminiOnATrainLine.java</url>
-          <line>16</line>
-          <properties class="trainNetworkGraphTraversal.ListOfTerminiOnATrainLine" method="getAllTerminiOfASpecifiedLine">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="72" />
+          <line>23</line>
+          <option name="timeStamp" value="75" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="((LinkedHashMap.Entry)((LinkedHashMap)graphMap).entrySet().toArray()[0]).getValue()" language="JAVA" custom="java.util.LinkedHashMap.Entry,java.util.LinkedHashMap" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/wmrNetwork_2$Main.ic" NAME="Main Coverage Results" MODIFIED="1610669981921" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/wmrNetwork_2$Main.ic" NAME="Main Coverage Results" MODIFIED="1610242273168" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>view.*</FILTER>
     </SUITE>
   </component>

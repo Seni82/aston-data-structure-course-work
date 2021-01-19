@@ -97,10 +97,11 @@ public class TrainNetworkNode {
 
                 //String.format("%s:\n", getTrainLine()) +
                 //String.format("%s  -> %s  - %s \n",
-                String.format("%s -> %s - %s",
-                        getFromToStation(),
-                        getToFromStation(),
-                        getTravelTime());
+                //String.format("%s -> %s - %s",
+                    //    getFromToStation(),
+                    //    getToFromStation(),
+                    //    getTravelTime());
+                String.format("%s",getFromToStation());
 
     }
 }

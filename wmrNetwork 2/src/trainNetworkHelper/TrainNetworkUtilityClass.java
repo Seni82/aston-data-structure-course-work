@@ -13,8 +13,8 @@ public class TrainNetworkUtilityClass {
     /*
      Scanner object for reading files.
      */
-    private Scanner mainNetworkDataReader = null;
-    private Scanner stepFreeDataReader = null;
+    public static Scanner mainNetworkDataReader = null;
+    public static Scanner stepFreeDataReader = null;
 
 
     public TrainNetworkUtilityClass(String dataFolderPath) throws FileNotFoundException {
@@ -176,6 +176,8 @@ public class TrainNetworkUtilityClass {
         return lineId;
     }
 
+
+
     public static void display(String info)
     {
         System.out.println(info);
@@ -190,6 +192,7 @@ public class TrainNetworkUtilityClass {
         return String.format("Cannot recognise the given command: '%s', " +
                 "please try with a different command between [a - m].%n", error);
     }
+
 
 
     /*
@@ -227,9 +230,11 @@ public class TrainNetworkUtilityClass {
     }
 
 
+
     public static String[] convertDataToNeededFormat(String dataToConvert, String splitBy){
         String[] splittedData = dataToConvert.trim().split(splitBy);
         return splittedData;
     }
+
 
 }

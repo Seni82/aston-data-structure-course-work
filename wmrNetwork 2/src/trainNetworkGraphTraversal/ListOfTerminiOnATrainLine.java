@@ -22,12 +22,25 @@ public class ListOfTerminiOnATrainLine {
         String trainLineRequested = TrainNetworkUtilityClass.returnMappedTrainLineToSuppliedAlphabet(trainLine);
         TrainNetworkNode trainLineName = new TrainNetworkNode(trainLineRequested,"","", 0);
         Map<TrainNetworkNode, List<TrainNetworkNode>> builtGraphMap = listOfterminiGraph.buildGraphForSpecifiedTrainLine(trainLineName);
+        for(TrainNetworkNode source : builtGraphMap.keySet()){
+            List<TrainNetworkNode> listOfAdjacentVertex = builtGraphMap.get(source);
+            if(listOfAdjacentVertex.size() == 1){
+                listOfTermini.add(listOfAdjacentVertex.toString());
+            }
+        }
+
+
+        /*
         for(Map.Entry<TrainNetworkNode, List<TrainNetworkNode>> stationName : builtGraphMap.entrySet()){
             if(stationName.getValue().size() <= 1)
             {
                 listOfTermini.add(stationName.getKey().toString());
             }
         }
+         */
+
+
+
         TrainNetworkUtilityClass.display(String.format("\n**Termini query on '%s' line executes in (%s milliseconds)**.\n",
                 trainLineRequested.toUpperCase(), TrainNetworkUtilityClass.getElapsedTime(startTime)));
         TrainNetworkUtilityClass.display(String.format("List of termini on '%s' below: ",trainLineRequested.toUpperCase()));
