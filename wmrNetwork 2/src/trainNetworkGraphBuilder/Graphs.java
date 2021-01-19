@@ -44,44 +44,24 @@ public class Graphs {
     }
 
 
-
     /*
        Consider requesting map as parameter, otherwise make private.
        Split by -> and get the data at index 1 for comparison.
        true if you want to use method as string comparison or false if object
      */
     public boolean isEdgeExistBetween(String fromToStation, String toFromStation) {
-        String[] splittedNode={}; String edge = "";
-        String addEdge = "";
         ArrayList<String> listOfEdges = new ArrayList<>();
         boolean isEdgePresent = false;
-        if(adjacencyListGraphMap.containsKey(fromToStation))
+        if(adjacencyListGraphMap != null && adjacencyListGraphMap.containsKey(fromToStation))
         {
             List<TrainNetworkNode> listOfAdjacentNode = adjacencyListGraphMap.get(fromToStation);
             for(TrainNetworkNode eachConnectedNode : listOfAdjacentNode){
-                    splittedNode = eachConnectedNode.toString().trim().split("\\s*->\\s*");
-                    if (splittedNode.length != 0) {
-                        if(splittedNode.length == 1){
-                            addEdge = splittedNode[0];
-                        }else {
-                            addEdge = splittedNode[1];
-                        }
-                    }
-                    //addEdge = eachConnectedNode.getToFromStation();
-                listOfEdges.add(addEdge);
+                listOfEdges.add(eachConnectedNode.getToFromStation());
             }
             isEdgePresent = listOfEdges.contains(toFromStation);
-            //System.out.println("\nIs edge present for "+ fromToStation+" and "+toFromStation + ": "+isEdgePresent);
-            //System.out.println(fromToStation+ " has connection with \n"+ listOfEdges.toString());
-        }
-        else{
-            //System.out.println(fromToStation +" does not exist as a from (key) station in the map" +
-              //      "therefore know edge present between "+fromToStation+" and "+ toFromStation);
         }
         return isEdgePresent;
     }
-
-
 
 
     //does a station have an edge.
@@ -97,26 +77,20 @@ public class Graphs {
        This should create a graph representation of all train line.
      */
     public Map<String, List<TrainNetworkNode>> buildGraphForSpecifiedTrainLine(String trainLineName) {
-        //Get data as map is more faster and efficient as suppose to arraylist previously used.
         Map<String, ArrayList<TrainNetworkNode>> mapData = TrainNetworkModelledData.getListOfNodesAsAMap();
-        String lineName = TrainNetworkUtilityClass.returnMappedTrainLineToSuppliedAlphabet(trainLineName);
-        ArrayList<TrainNetworkNode> dataForGraph = mapData.get(lineName);
+        ArrayList<TrainNetworkNode> dataForGraph = mapData.get(trainLineName);
         for (TrainNetworkNode trainNetwork : dataForGraph) {
             addUndirectedEdge(trainNetwork.getTrainLine(),
                     trainNetwork.getFromToStation(),
                     trainNetwork.getToFromStation(),
                     trainNetwork.getTravelTime());
-            isEdgeExistBetween(trainNetwork.getFromToStation(), trainNetwork.getToFromStation());
         }
         TrainNetworkUtilityClass.printGraph(adjacencyListGraphMap);
-        printAdjacentListOfEachVertex();
         return adjacencyListGraphMap;
     }
 
 
-
-
-
+    //this is for a different question.
     public String buildGraphForTotalTravelTimeForAllLines() {
         ArrayList<String> allLinesAndTravelTime = new ArrayList<String>();
         Map<String, ArrayList<TrainNetworkNode>> mapData = TrainNetworkModelledData.getListOfNodesAsAMap();
@@ -133,23 +107,8 @@ public class Graphs {
                 trainLineName = trainNetwork.getTrainLine();
             }
             allLinesAndTravelTime.add(String.format("%s:",trainLineName));
-            //String travelTime = calculateTravelTimeBetweenTermini();
-            //allLinesAndTravelTime.add(travelTime);
         }
         return allLinesAndTravelTime.toString();
-    }
-
-
-    public String printAdjacentListOfEachVertex(){
-        StringBuilder builder = new StringBuilder();
-        for(String key : adjacencyListGraphMap.keySet()){
-            builder.append(key).append(":");
-            for(TrainNetworkNode adj : adjacencyListGraphMap.get(key)){
-                builder.append(adj.toString()).append(" ");
-            }
-            builder.append("\n");
-        }
-        return builder.toString();
     }
 
 
@@ -158,15 +117,6 @@ public class Graphs {
     {
         System.out.println(info);
     }
-
-
-
-
-
-
-
-
-
 
 }
 

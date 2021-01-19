@@ -33,30 +33,6 @@ public class TrainNetworkUtilityClass {
     }
 
 
-
-
-    /*
-     Read and return the data as an array list of Node objects.
-     */
-    protected ArrayList<TrainNetworkNode>readAndModelTrainNetworkDataForGraphCreation()
-    {
-        ArrayList<TrainNetworkNode>netWorkDataMap = new ArrayList<TrainNetworkNode>();
-        if(mainNetworkDataReader.hasNext()) {
-            mainNetworkDataReader.nextLine();
-        }
-        while(mainNetworkDataReader.hasNextLine())
-        {
-            String[] trainNetworkData = mainNetworkDataReader.nextLine().split(",");
-            String trainLine = trainNetworkData[0]; String fromToStationName = trainNetworkData[1];
-            String toFromStationName = trainNetworkData[2]; int travelTime = Integer.parseInt(trainNetworkData[3]);
-            TrainNetworkNode eachCsvDataLine = new TrainNetworkNode(trainLine, fromToStationName,toFromStationName,travelTime);
-            netWorkDataMap.add(eachCsvDataLine);
-
-        }
-        return netWorkDataMap;
-    }
-
-
     /*
       Flexibility to have the data as a map as well if need.
      */
@@ -86,27 +62,55 @@ public class TrainNetworkUtilityClass {
     }
 
 
-
     /*
-     * Process step free access data and pass to model when called in constructor.
+       Helper function to help print graph created for visibility.
+       It shows relationships and connections between nodes and there weight.
      */
-    private ArrayList<String> getAllStepFreeAccessStations() {
-        ArrayList<String> allStepFreeAccessStations = new ArrayList<String>();
-        if(stepFreeDataReader.hasNext())
-        {
-            stepFreeDataReader.nextLine();
+    public static void printGraph(Map<String, List<TrainNetworkNode>> graph) {
+        int x = 0; String trainLine = null;
+        while(x == 0){
+            for(String trainLineKey : graph.keySet()){
+               List<TrainNetworkNode> node = graph.get(trainLineKey);
+               trainLine = node.get(x).getTrainLine();
+            }
+            x++;
+            System.out.println(trainLine + " line, has the following relationship : ");
         }
-        while(stepFreeDataReader.hasNextLine()) {
-            String stepFreeStations = stepFreeDataReader.nextLine().trim();
-            allStepFreeAccessStations.add(stepFreeStations);
+        for (Map.Entry<String, List<TrainNetworkNode>> entry : graph.entrySet()) {
+            List<String> allAdjacentVertices = new ArrayList<>();
+            List<TrainNetworkNode> allConnectingStations = entry.getValue();
+            for(TrainNetworkNode connectStation : allConnectingStations) {
+                allAdjacentVertices.add(connectStation.getToFromStation());
+            }
+            System.out.print("\n" + entry.getKey() + " has an adjacent vertex of : \n "+allAdjacentVertices.toString() +"\n");
         }
-        return allStepFreeAccessStations;
+        System.out.println();
     }
 
+    /*
+     Read and return the data as an array list of Node objects.
+    */
+    protected ArrayList<TrainNetworkNode>readAndModelTrainNetworkDataForGraphCreation()
+    {
+        ArrayList<TrainNetworkNode>netWorkDataMap = new ArrayList<TrainNetworkNode>();
+        if(mainNetworkDataReader.hasNext()) {
+            mainNetworkDataReader.nextLine();
+        }
+        while(mainNetworkDataReader.hasNextLine())
+        {
+            String[] trainNetworkData = mainNetworkDataReader.nextLine().split(",");
+            String trainLine = trainNetworkData[0]; String fromToStationName = trainNetworkData[1];
+            String toFromStationName = trainNetworkData[2]; int travelTime = Integer.parseInt(trainNetworkData[3]);
+            TrainNetworkNode eachCsvDataLine = new TrainNetworkNode(trainLine, fromToStationName,toFromStationName,travelTime);
+            netWorkDataMap.add(eachCsvDataLine);
+
+        }
+        return netWorkDataMap;
+    }
 
     /*
-       map the user supplied alphabet to the actual train line name.
-     */
+        map the user supplied alphabet to the actual train line name.
+      */
     public static String returnMappedTrainLineToSuppliedAlphabet(String lineId)
     {
         boolean doesLineIdExist = false;
@@ -176,56 +180,6 @@ public class TrainNetworkUtilityClass {
         return lineId;
     }
 
-    public static void display(String info)
-    {
-        System.out.println(info);
-    }
-
-    /*
-     * Returns an error message for an unrecognised command.
-     * @param error the unrecognised command
-     * @return an error message
-     */
-    private static String unrecogniseCommandErrorMsg(String error) {
-        return String.format("Cannot recognise the given command: '%s', " +
-                "please try with a different command between [a - m].%n", error);
-    }
-
-
-    /*
-       Helper function to help print graph created for visibility.
-       It shows relationships and connections between nodes and there weight.
-     */
-    public static void printGraph(Map<String, List<TrainNetworkNode>> graph) {
-        int x = 0;
-        for(String eachStationKey : graph.keySet()){
-            List<TrainNetworkNode> listOfStationObject = graph.get(eachStationKey);
-            for(TrainNetworkNode eachStationObject : listOfStationObject){
-                if((x == 0) && (eachStationKey.length() != 0)){
-                    String TrainLineName = eachStationObject.getTrainLine();
-                    System.out.println(String.format("*** POSSIBLE ROUTE's ALONG '%s' *** :",TrainLineName));
-                    x++;
-                    break;
-                }
-            }
-        }
-        for (Map.Entry<String, List<TrainNetworkNode>> entry : graph.entrySet()) {
-            List<String> alladjacentVertices = new ArrayList<>();
-            List<TrainNetworkNode> allConnectingStations = entry.getValue();
-            for(TrainNetworkNode connectStation : allConnectingStations){
-                String[] splitConnection = connectStation.toString().trim().split("->");
-                //add a check here
-                String adjacentNeighbour;
-                if(splitConnection.length > 1){adjacentNeighbour = splitConnection[1];}
-                else{adjacentNeighbour = splitConnection[0];}
-                //alladjacentVertices.add(adjacentNeighbour);
-                alladjacentVertices.add(connectStation.getToFromStation());
-            }
-            System.out.print("\n" + entry.getKey() + " has an adjacent vertex of : \n "+alladjacentVertices.toString() +"\n");
-        }
-        System.out.println();
-    }
-
 
     //This returns the time difference in miliseconds.
     public static long getElapsedTime(long startTime){
@@ -241,4 +195,38 @@ public class TrainNetworkUtilityClass {
     }
 
 
+
+    /*
+     * Process step free access data and pass to model when called in constructor.
+     */
+    private ArrayList<String> getAllStepFreeAccessStations() {
+        ArrayList<String> allStepFreeAccessStations = new ArrayList<String>();
+        if(stepFreeDataReader.hasNext())
+        {
+            stepFreeDataReader.nextLine();
+        }
+        while(stepFreeDataReader.hasNextLine()) {
+            String stepFreeStations = stepFreeDataReader.nextLine().trim();
+            allStepFreeAccessStations.add(stepFreeStations);
+        }
+        return allStepFreeAccessStations;
+    }
+
+
+
+    /*
+     * Returns an error message for an unrecognised command.
+     * @param error the unrecognised command
+     * @return an error message
+     */
+    private static String unrecogniseCommandErrorMsg(String error) {
+        return String.format("Cannot recognise the given command: '%s', " +
+                "please try with a different command between [a - m].%n", error);
+    }
+
+
+    public static void display(String info)
+    {
+        System.out.println(info);
+    }
 }

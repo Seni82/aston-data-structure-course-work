@@ -81,6 +81,7 @@ public class TrainNetworkNode {
         return trainLine.getTrainLine().equalsIgnoreCase(this.trainLine);
     }
 
+
     @Override
     public int hashCode()
     {
@@ -95,7 +96,7 @@ public class TrainNetworkNode {
     {
         return //String.format("%s:\n", getTrainLine()) +
                 //String.format("%s  -> %s  - %s \n",
-                String.format("%s -> %s -> %s ",
+                String.format("%s -> %s - %s ",
                         getFromToStation(),
                         getToFromStation(),
                         getTravelTime());
