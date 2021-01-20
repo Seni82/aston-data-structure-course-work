@@ -29,9 +29,9 @@ public class TrainNetworkUtilityClass {
             new StepFreeAccessStations().setListStepFreeAccessData(getAllStepFreeAccessStations());
             //new TrainNetworkModelledData(readAndModelTrainNetworkDataForGraphCreation());
             new TrainNetworkModelledData(readsAndModelTrainNetworkDataAsMapForGraphCreation());
+            //new TrainNetworkModelledData(readAndModelTrainNetworkDataForGraphCreation());
         }
     }
-
 
     /*
       Flexibility to have the data as a map as well if need.
@@ -87,10 +87,12 @@ public class TrainNetworkUtilityClass {
         System.out.println();
     }
 
+
+
     /*
      Read and return the data as an array list of Node objects.
     */
-    protected ArrayList<TrainNetworkNode>readAndModelTrainNetworkDataForGraphCreation()
+    public ArrayList<TrainNetworkNode>readAndModelTrainNetworkDataForGraphCreation()
     {
         ArrayList<TrainNetworkNode>netWorkDataMap = new ArrayList<TrainNetworkNode>();
         if(mainNetworkDataReader.hasNext()) {
@@ -107,6 +109,7 @@ public class TrainNetworkUtilityClass {
         }
         return netWorkDataMap;
     }
+
 
     /*
         map the user supplied alphabet to the actual train line name.
@@ -193,7 +196,6 @@ public class TrainNetworkUtilityClass {
         String[] splittedData = dataToConvert.trim().split(splitBy);
         return splittedData;
     }
-
 
 
     /*

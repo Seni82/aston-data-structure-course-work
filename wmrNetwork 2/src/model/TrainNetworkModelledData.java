@@ -14,7 +14,7 @@ public class TrainNetworkModelledData {
 
             /********** 2 PRIVATE FIELDS BELOW *********/
     /*
-      TrainNode instance used to held the train network data modelled,
+      TrainNode instance used to hold the train network data modelled,
       this will be exposed for other classes later.
      */
     private static ArrayList<TrainNetworkNode> listOfNodeObjects;
@@ -49,7 +49,6 @@ public class TrainNetworkModelledData {
     {
         this.listOfNodesAsAMap = listOfNodesAsAsMap;
     }
-
 
 
 

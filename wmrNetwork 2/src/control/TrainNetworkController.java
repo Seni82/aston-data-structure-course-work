@@ -2,6 +2,7 @@ package control;
 import trainNetworkGraphTraversal.AllLinesAndTravelTimeAlongTermini;
 import trainNetworkGraphTraversal.ListOfTerminiOnATrainLine;
 import trainNetworkGraphTraversal.CumulativeTravelTimeOnALine;
+import trainNetworkGraphTraversal.PathBetweenStations;
 import trainNetworkHelper.TrainNetworkUtilityClass;
 
 public class TrainNetworkController implements Controller{
@@ -45,6 +46,7 @@ public class TrainNetworkController implements Controller{
 
     @Override
     public String showAllPaths(String fromStation, String toStation) {
+        PathBetweenStations.getPathBetweenStations(fromStation, toStation);
         return null;
     }
 
